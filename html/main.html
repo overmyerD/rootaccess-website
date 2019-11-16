@@ -3,8 +3,32 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+      <link rel="stylesheet" href="../css/main.css">
   </head>
   <body>
-    <h1>hi</h1>
+    <div class="terminal">
+      <div class="output">
+        <div class="line">
+          <span class="line-id">rootaccess@linux-desktop:/#<span class="cmd"> ls</span></span>
+        </div>
+        <div class="directory">
+          <ul>
+            <li class="folder" style="font-weight:bold;">..</li>
+            <li class="folder">about-us</li>
+            <li class="folder">project-definition</li>
+          </ul>
+        </div>
+      </div>
+      <div class="line">
+        <span class="line-id">rootaccess@linux-desktop:/# </span><span class="cmd" id="cmd"></span><span id="blink">&nbsp;</span>
+      </div>
+    </div>
+
+
+
+
+    <script src="../scripts/main.js">
+
+    </script>
   </body>
 </html>

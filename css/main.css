@@ -1,0 +1,34 @@
+body{
+  margin: auto;
+  width: 95%;
+  padding-top: 25px;
+  background-color: #2C001E;
+
+  font-family: Ubuntu Mono;
+  color: white;
+}
+.line{
+  word-wrap: break-word;
+}
+.line-id{
+  color: #00f100;
+}
+.cmd{
+  color: white;
+}
+
+.blink{
+  background-color: white;
+}
+
+.directory li{
+  display:inline;
+  padding-right: 20px;
+}
+.directory ul{
+  margin: 1px;
+  padding: 1px;
+}
+.folder{
+  color: #87ceeb;
+}

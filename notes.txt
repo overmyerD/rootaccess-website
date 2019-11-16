@@ -1,0 +1,4 @@
+What the website needs:
+- home page
+- project definition page
+- about us page
