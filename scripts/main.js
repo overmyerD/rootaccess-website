@@ -60,7 +60,7 @@ function removeText(num, time) {
               setTimeout(function() {
                 var length = text.innerHTML.length;
                 if((text.innerHTML.lastIndexOf("&nbsp;")+5) == length-1) text.innerHTML = text.innerHTML.substring(0, length-6);
-                if((text.innerHTML.lastIndexOf("&gt;")+3) == length-1) text.innerHTML = text.innerHTML.substring(0, length-4);
+                else if((text.innerHTML.lastIndexOf("&gt;")+3) == length-1) text.innerHTML = text.innerHTML.substring(0, length-4);
                 else text.innerHTML = text.innerHTML.substring(0, length-1);
                 if(index+1 == num){
                   typing = false;
