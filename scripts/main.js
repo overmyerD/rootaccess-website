@@ -22,7 +22,13 @@ function addChar(char) {
   var wbr = document.createElement("wbr");
 
   wbr.id = char;
-  cmd.insertBefore(document.createTextNode(char), blink);
+  if(char == "\n"){
+    cmd.insertBefore(document.createElement("br"), blink);
+    cmd.insertBefore(document.createTextNode("> "), blink);
+  }
+  else{
+    cmd.insertBefore(document.createTextNode(char), blink);
+  }
   cmd.insertBefore(wbr, blink);
 }
 
@@ -122,14 +128,6 @@ function printableKey(e) {
     return true;
   }
   return false;
-}
-
-const forLoop = async _ => {
-    await addText("Daltom Ove", 150);
-    await removeText(5, 75);
-    await addText("n Overmer", 150);
-    await removeText(2, 500);
-    await addText("yer", 150);
 }
 
 function addText(input, time) {
