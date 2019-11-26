@@ -1,34 +1,44 @@
 body{
   margin: auto;
-  width: 95%;
+  width: 50%;
   padding-top: 25px;
-  background-color: #2C001E;
+  background-color: #dddddd;
 
   font-family: Ubuntu Mono;
   color: white;
 }
+.terminal{
+    height: 450px;
+    overflow-y: scroll;
+    background-color: #2C001E;
+    border: 2px solid #808080;
+}
+
+
 .line{
-  word-wrap: break-word;
-}
-.line-id{
-  color: #00f100;
-}
-.cmd{
-  color: white;
+  padding: 10px;
+  white-space: -webkit-pre-wrap; /* Newer versions of Chrome/Safari*/
+  word-break: break-all;
+  word-wrap : break-word;
 }
 
 .blink{
   background-color: white;
+  color: #2C001E;
 }
 
-.directory li{
-  display:inline;
-  padding-right: 20px;
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
 }
-.directory ul{
-  margin: 1px;
-  padding: 1px;
+/* Track */
+::-webkit-scrollbar-track {
+  background: #2C001E;
 }
-.folder{
-  color: #87ceeb;
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #E95420;
 }
