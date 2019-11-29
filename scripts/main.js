@@ -1,20 +1,65 @@
-window.onkeydown = function pressed(e) {
-
-  if(printableKey(e)){
-    addChar(e.key);
-  }else if(e.key == " "){
-    addChar('\u00A0');
-  }else if(e.key == "ArrowLeft"){
-    moveCursorLeft();
-  }else if(e.key == "ArrowRight"){
-    moveCursorRight();
-  }else if(e.key == "Backspace"){
-    backspaceCharacter();
-  }else if(e.key == "Delete"){
-    deleteCharacter();
-  }
-
+async function openPDF(text) {
+  await addText("xdf", 100);
+  await addText("-", 200);
+  await addText("open", 50);
+  await keyFunction(6, "Backspace", 100);
+  await addText("g", 50);
+  await addText("-", 200);
+  await addText("open ", 50);
+  await addText(text, 75);
+  await addText(",pd", 75);
+  await keyFunction(3, "Backspace", 75);
+  await addText(".pdf", 100);
+  addCMDLine();
+  clearCMD();
 }
+
+async function catFile(file, output) {
+  await addText("cat ", 75);
+  await addText(file.charAt(0), 250);
+  await addText(file.substring(1, file.length), 75);
+  addCMDLine();
+  clearCMD();
+  for(var i=0;i<output.length;i++) addLine(output[i]);
+  document.getElementById("terminal").scrollTop = document.getElementById("terminal").scrollHeight;
+}
+
+
+window.onkeydown = function pressed(e) {
+  if      (printableKey(e))       addChar(e.key);
+  else if (e.key == " ")          addChar('\u00A0');
+  else if (e.key == "ArrowLeft")  moveCursorLeft();
+  else if (e.key == "ArrowRight") moveCursorRight();
+  else if (e.key == "Backspace")  backspaceCharacter();
+  else if (e.key == "Delete")     deleteCharacter();
+}
+
+function addCMDLine() {
+  var output = document.getElementById("output");
+  var lineDiv = document.createElement("div");
+  lineDiv.id = "line";
+  lineDiv.className = "line";
+  var cmdText = document.getElementById("cmd").textContent;
+  lineDiv.innerHTML = "<span class='green'>rootaccess@linux-desktop</span>:<span class='blue'>~</span>$&nbsp;" + cmdText;
+  output.appendChild(lineDiv);
+}
+
+function addLine(text) {
+  var output = document.getElementById("output");
+  var lineDiv = document.createElement("div");
+  lineDiv.id = "line";
+  lineDiv.className = "line";
+  for(var i=0;i<text.length;i++){
+    if(text.charAt(i) == " "){
+      lineDiv.innerHTML += '\u00A0';
+    }
+    else{
+      lineDiv.innerHTML += text.charAt(i);
+    }
+  }
+  output.appendChild(lineDiv);
+}
+
 
 function addChar(char) {
   var cmd = document.querySelector('#cmd');
@@ -24,7 +69,6 @@ function addChar(char) {
   wbr.id = char;
   if(char == "\n"){
     cmd.insertBefore(document.createElement("br"), blink);
-    cmd.insertBefore(document.createTextNode("> "), blink);
   }
   else{
     cmd.insertBefore(document.createTextNode(char), blink);
@@ -169,5 +213,5 @@ function keyFunction(num, key, time) {
 }
 
 function clearCMD() {
-  document.getElementById("cmd").innerHTML = "";
+  document.getElementById("cmd").innerHTML = "<span class='blink'>&nbsp;<wbr class='end' id='&nbsp;'>";
 }
