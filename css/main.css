@@ -1,25 +1,22 @@
 body{
-  margin: auto;
-  width: 50%;
-  padding-top: 25px;
   background-color: #dddddd;
-
   font-family: Ubuntu Mono;
   color: white;
+
 }
 .terminal{
-    height: 450px;
+    overflow-wrap: break-word;
+    margin: auto;
+    padding: 5px;
+    margin-bottom: 5px;
     overflow-y: scroll;
     background-color: #2C001E;
-    border: 2px solid #808080;
-}
-
-
-.line{
-  padding: 10px;
-  white-space: -webkit-pre-wrap; /* Newer versions of Chrome/Safari*/
-  word-break: break-all;
-  word-wrap : break-word;
+    position:absolute;
+    top: 0; bottom: 0; right: 5%;
+    margin: auto;
+    width: 75vw; height: 75vh;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 .blink{
@@ -27,8 +24,12 @@ body{
   color: #2C001E;
 }
 
-
-
+span.green{
+  color: #00FF00;
+}
+span.blue{
+  color: #87ceeb;
+}
 /* width */
 ::-webkit-scrollbar {
   width: 3px;
@@ -40,5 +41,47 @@ body{
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #E95420;
+  background: #EB6536;
+}
+
+.sidebar{
+  height: 100%;
+  width: 15%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  color: #333333;
+}
+
+.sidebar button{
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  width: 100%;
+}
+.sidebar button:focus {
+  outline:0;
+}
+
+.main-btn{
+  background-color: #EB6536;
+  height: 9%;
+  color: black;
+}
+.sub-btn{
+  background-color: #F08763;
+  height: 7%;
+  color: black;
+  float: right;
+}
+.sub-sub-btn{
+  background-color: #F4AA90;
+  height: 5%;
+  color: black;
+  float: right;
+  cursor: pointer;
 }
