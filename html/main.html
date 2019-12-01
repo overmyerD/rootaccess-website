@@ -7,13 +7,32 @@
   </head>
   <body>
 
-    <div class="terminal">
-      <div class="output">
+    <div class="sidebar">
+      <button type="button" class="main-btn" style="cursor: pointer;">Introduction</button>
+      <button type="button" class="main-btn" disabled>Team</button>
+        <button type="button" class="sub-btn">Christopher McNeil</button>
+          <button type="button" class="sub-sub-btn">Resume</button>
+        <button type="button" class="sub-btn">Dalton Overmyer</button>
+          <button type="button" class="sub-sub-btn" id="dalton-resume">Resume</button>
+        <button type="button" class="sub-btn">Thomas Mulugeta Abebe</button>
+          <button type="button" class="sub-sub-btn">Resume</button>
+      <button type="button" class="main-btn">Documentation</button>
+        <button type="button" class="sub-btn" style="cursor: pointer;">Project Definition</button>
+        <button type="button" class="sub-btn" style="cursor: pointer;">Project GitHub</button>
+        <button type="button" class="sub-btn" style="cursor: pointer;">Website GitHub</button>
+        <button type="button" class="sub-btn" style="cursor: pointer;">Symposium PowerPoint</button>
+    </div>
+
+    <div class="terminal" id="terminal">
+      <div id="output">
 
       </div>
-      <div class="line" id="line"><span>command:&nbsp</span><span id="cmd"><span class="blink">&nbsp<wbr class="end" id='&nbsp;'></span></span></div>
+      <div class="line" id="line">
+        <span id="cmdUser"><span class="green">rootaccess@linux-desktop</span>:<span class="blue">~</span>$&nbsp;</span><span id="cmd"><span class="blink">&nbsp;<wbr class="end" id='&nbsp;'></span></span>
       </div>
+
     </div>
+
 
     <script src="../scripts/main.js">
     </script>
