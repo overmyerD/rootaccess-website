@@ -1,18 +1,72 @@
-async function openPDF(text) {
-  await addText("xdf", 100);
-  await addText("-", 200);
-  await addText("open", 50);
-  await keyFunction(6, "Backspace", 100);
-  await addText("g", 50);
-  await addText("-", 200);
-  await addText("open ", 50);
-  await addText(text, 75);
-  await addText(",pd", 75);
-  await keyFunction(3, "Backspace", 75);
-  await addText(".pdf", 100);
-  addCMDLine();
-  clearCMD();
+writing = false;
+document.getElementById("dalton-resume").addEventListener('click', function (e) {
+  if(!writing){
+    writing = true;
+    openPDF("dalton_resume").then(function() {
+      writing = false;
+    });
+  }
+  return;
+});
+
+function intro() {
+  var file = "intro.txt";
+
+  var output =
+  ["  _____             _                                   \n",
+  " |  __ \\           | |       /\\                         \n",
+  " | |__) |___   ___ | |_     /  \\   ___ ___ ___  ___ ___ \n",
+  " |  _  // _ \\ / _ \\| __|   / /\\ \\ / __/ __/ _ \\/ __/ __|\n",
+  " | | \\ \\ (_) | (_) | |_   / ____ \\ (_| (_|  __/\\__ \\__ \\\n",
+  " |_|  \\_\\___/ \\___/ \\__| /_/    \\_\\___\\___\\___||___/___/\n\n",
+  "                           o",
+  "                           o",
+  "                          o o",
+  "                         o   o",
+  "                        o     o",
+  "                       o o     o",
+  "                      o   o   o o",
+  "                   oo     o  o   o",
+  "                  o   o     o     oo",
+  "                 o     o    o     o o",
+  "                o     o o   oo    o  o",
+  "               o     o  o  o  o   o   oo",
+  "               o    o   o o   o   o     o",
+  "               o   o     o       o o     o",
+  "              o    o    o o     o  o      o",
+  "             o    o    o   o    o   o",
+  "            o    o     o   o    o   o",
+  "                  o        o    o    o",
+  "                  o        o         o\n\n",
+  "A Southern Illinois University Computer Science senior project by Dalton Overmyer, Christopher McNeil, and Thomas Mulugeta Abebe.\n",
+  "Mentor: Dr. Geisler-Lee - Research Professor. Bioinformatics, Cell Biology, Cell Wall Biology, Metabolism at Southern Illinois University.\n\n",
+  "Our main goal is to create a program that automatically crops the image of a root system. "];
+
+  catFile(file, output);
 }
+
+function openPDF(text) {
+    return new Promise(async function(resolve, reject) {
+      await addText("xdf", 100);
+      await addText("-", 200);
+      await addText("open", 50);
+      await keyFunction(6, "Backspace", 100);
+      await addText("g", 50);
+      await addText("-", 200);
+      await addText("open ", 50);
+      await addText(text, 75);
+      await addText(",pd", 75);
+      await keyFunction(3, "Backspace", 75);
+      await addText(".pdf", 100);
+      addCMDLine();
+      clearCMD();
+      await wait(100);
+      window.open("../root/" + text + ".pdf");
+      resolve();
+  });
+}
+
+
 
 async function catFile(file, output) {
   await addText("cat ", 75);
@@ -51,10 +105,13 @@ function addLine(text) {
   lineDiv.className = "line";
   for(var i=0;i<text.length;i++){
     if(text.charAt(i) == " "){
-      lineDiv.innerHTML += '\u00A0';
+      lineDiv.innerHTML += '\u00A0' + "<wbr>";
+    }
+    else if(text.charAt(i) == "\n"){
+      lineDiv.appendChild(document.createElement("br"));
     }
     else{
-      lineDiv.innerHTML += text.charAt(i);
+      lineDiv.innerHTML += text.charAt(i) + "<wbr>";
     }
   }
   output.appendChild(lineDiv);
@@ -208,6 +265,14 @@ function keyFunction(num, key, time) {
               }, i * time);
           })(i);
       }
+    }, time);
+  });
+}
+
+function wait(time) {
+  return new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      resolve();
     }, time);
   });
 }
