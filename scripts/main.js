@@ -9,15 +9,6 @@ document.getElementById("dalton-resume").addEventListener('click', function (e) 
   }
   return;
 });
-document.getElementById("dalton-resume").addEventListener('click', function (e) {
-  if(!writing){
-    writing = true;
-    openPDF(resumes[0]).then(function() {
-      writing = false;
-    });
-  }
-  return;
-});
 document.getElementById("thomas-resume").addEventListener('click', function (e) {
   if(!writing){
     writing = true;
