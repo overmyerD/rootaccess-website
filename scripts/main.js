@@ -1,48 +1,85 @@
 writing = false;
+
 document.getElementById("dalton-resume").addEventListener('click', function (e) {
   if(!writing){
     writing = true;
-    openPDF("dalton_resume").then(function() {
+    openPDF(resumes[0]).then(function() {
+      writing = false;
+    });
+  }
+  return;
+});
+document.getElementById("dalton-resume").addEventListener('click', function (e) {
+  if(!writing){
+    writing = true;
+    openPDF(resumes[0]).then(function() {
+      writing = false;
+    });
+  }
+  return;
+});
+document.getElementById("thomas-resume").addEventListener('click', function (e) {
+  if(!writing){
+    writing = true;
+    openPDF(resumes[1]).then(function() {
+      writing = false;
+    });
+  }
+  return;
+});
+document.getElementById("christopher-resume").addEventListener('click', function (e) {
+  if(!writing){
+    writing = true;
+    openPDF(resumes[2]).then(function() {
+      writing = false;
+    });
+  }
+  return;
+});
+document.getElementById("github-project").addEventListener('click', function (e) {
+  if(!writing){
+    writing = true;
+    openLink("github.com/overmyerD/rootaccess-senior-project").then(function() {
+      writing = false;
+    });
+  }
+  return;
+});
+document.getElementById("github-website").addEventListener('click', function (e) {
+  if(!writing){
+    openLink("github.com/overmyerD/rootaccess-website").then(function() {
       writing = false;
     });
   }
   return;
 });
 
-function intro() {
-  var file = "intro.txt";
+document.getElementById("intro").addEventListener('click', function (e) {
+  if(!writing){
+    writing = true;
+    catFile(introFile, introOutput).then(function() {
+      writing = false;
+    });
+  }
+  return;
+});
 
-  var output =
-  ["  _____             _                                   \n",
-  " |  __ \\           | |       /\\                         \n",
-  " | |__) |___   ___ | |_     /  \\   ___ ___ ___  ___ ___ \n",
-  " |  _  // _ \\ / _ \\| __|   / /\\ \\ / __/ __/ _ \\/ __/ __|\n",
-  " | | \\ \\ (_) | (_) | |_   / ____ \\ (_| (_|  __/\\__ \\__ \\\n",
-  " |_|  \\_\\___/ \\___/ \\__| /_/    \\_\\___\\___\\___||___/___/\n\n",
-  "                           o",
-  "                           o",
-  "                          o o",
-  "                         o   o",
-  "                        o     o",
-  "                       o o     o",
-  "                      o   o   o o",
-  "                   oo     o  o   o",
-  "                  o   o     o     oo",
-  "                 o     o    o     o o",
-  "                o     o o   oo    o  o",
-  "               o     o  o  o  o   o   oo",
-  "               o    o   o o   o   o     o",
-  "               o   o     o       o o     o",
-  "              o    o    o o     o  o      o",
-  "             o    o    o   o    o   o",
-  "            o    o     o   o    o   o",
-  "                  o        o    o    o",
-  "                  o        o         o\n\n",
-  "A Southern Illinois University Computer Science senior project by Dalton Overmyer, Christopher McNeil, and Thomas Mulugeta Abebe.\n",
-  "Mentor: Dr. Geisler-Lee - Research Professor. Bioinformatics, Cell Biology, Cell Wall Biology, Metabolism at Southern Illinois University.\n\n",
-  "Our main goal is to create a program that automatically crops the image of a root system. "];
 
-  catFile(file, output);
+function openLink(link) {
+  return new Promise(async function(resolve, reject) {
+    await addText("xdf-open", 100);
+    await addText(" http://", 125);
+    await keyFunction(3, "ArrowLeft", 150);
+    await addText("s", 75);
+    await keyFunction(3, "ArrowRight", 100);
+    await addText(link, 45);
+    await wait(100);
+    addCMDLine();
+    clearCMD();
+    document.getElementById("terminal").scrollTop = document.getElementById("terminal").scrollHeight;
+    window.open("https://" + link);
+    resolve();
+});
 }
 
 function openPDF(text) {
@@ -58,24 +95,27 @@ function openPDF(text) {
       await addText(",pd", 75);
       await keyFunction(3, "Backspace", 75);
       await addText(".pdf", 100);
+      await wait(100);
       addCMDLine();
       clearCMD();
-      await wait(100);
+      document.getElementById("terminal").scrollTop = document.getElementById("terminal").scrollHeight;
       window.open("../root/" + text + ".pdf");
       resolve();
   });
 }
 
-
-
 async function catFile(file, output) {
-  await addText("cat ", 75);
-  await addText(file.charAt(0), 250);
-  await addText(file.substring(1, file.length), 75);
-  addCMDLine();
-  clearCMD();
-  for(var i=0;i<output.length;i++) addLine(output[i]);
-  document.getElementById("terminal").scrollTop = document.getElementById("terminal").scrollHeight;
+  return new Promise(async function(resolve, reject) {
+    await addText("cat ", 75);
+    await addText(file.charAt(0), 250);
+    await addText(file.substring(1, file.length), 75);
+    await wait(100);
+    addCMDLine();
+    clearCMD();
+    for(var i=0;i<output.length;i++) addLine(output[i]);
+    document.getElementById("terminal").scrollTop = document.getElementById("terminal").scrollHeight;
+    resolve();
+  });
 }
 
 
