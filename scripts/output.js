@@ -1,6 +1,5 @@
 
 
-var introFile = "intro.txt";
 var introOutput =
 ["  _____             _                                   \n",
 " |  __ \\           | |       /\\                         \n",
