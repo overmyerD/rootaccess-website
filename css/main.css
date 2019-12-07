@@ -1,10 +1,11 @@
 body{
   background-color: #dddddd;
-  font-family: Ubuntu Mono;
   color: white;
 
 }
 .terminal{
+    font-family: monospace;
+    font-size: 15px;
     overflow-wrap: break-word;
     margin: auto;
     padding: 5px;
@@ -45,8 +46,9 @@ span.blue{
 }
 
 .sidebar{
+  overflow-wrap: break-word;
   height: 100%;
-  width: 15%;
+  width: 12%;
   position: fixed;
   top: 0;
   left: 0;
@@ -55,33 +57,43 @@ span.blue{
 }
 
 .sidebar button{
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
+  outline: none;
   border: none;
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
   width: 100%;
-}
-.sidebar button:focus {
-  outline:0;
+  padding: 10px 10px 10px 10px;
+  text-align: left;
+  border-right: 1px solid black;
 }
 
-.main-btn{
-  background-color: #EB6536;
-  height: 9%;
-  color: black;
-}
-.sub-btn{
-  background-color: #F08763;
-  height: 7%;
-  color: black;
-  float: right;
-}
-.sub-sub-btn{
-  background-color: #F4AA90;
-  height: 5%;
-  color: black;
-  float: right;
+.sidebar .header-btn{
   cursor: pointer;
+  background-color: black;
+  color: white;
+  border-bottom: 1px solid white;
+}
+.sidebar .header-btn:hover{
+  background-color: #E95420;
+  color: #E2E0DD;
+}
+.sidebar .header-btn-none{
+  background-color: black;
+  color: white;
+  border-bottom: 1px solid white;
+}
+
+.sidebar .inner-btn{
+  border-bottom: 1px solid black;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+}
+.sidebar .inner-btn:hover{
+  background-color: #2C001E;
+  color: #AEA79F;
+}
+
+.sidebar .inner-btn-none{
+  background-color: #C1C1C1;
+  color: black;
+  font-weight: bold;
 }

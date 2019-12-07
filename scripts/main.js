@@ -1,105 +1,96 @@
 writing = false;
 
-document.getElementById("dalton-resume").addEventListener('click', function (e) {
-  if(!writing){
-    writing = true;
-    openPDF(resumes[0]).then(function() {
-      writing = false;
-    });
-  }
-  return;
-});
-document.getElementById("thomas-resume").addEventListener('click', function (e) {
-  if(!writing){
-    writing = true;
-    openPDF(resumes[1]).then(function() {
-      writing = false;
-    });
-  }
-  return;
-});
-document.getElementById("christopher-resume").addEventListener('click', function (e) {
-  if(!writing){
-    writing = true;
-    openPDF(resumes[2]).then(function() {
-      writing = false;
-    });
-  }
-  return;
-});
-document.getElementById("github-project").addEventListener('click', function (e) {
-  if(!writing){
-    writing = true;
-    openLink("github.com/overmyerD/rootaccess-senior-project").then(function() {
-      writing = false;
-    });
-  }
-  return;
-});
-document.getElementById("github-website").addEventListener('click', function (e) {
-  if(!writing){
-    openLink("github.com/overmyerD/rootaccess-website").then(function() {
-      writing = false;
-    });
-  }
-  return;
-});
-
 document.getElementById("intro").addEventListener('click', function (e) {
   if(!writing){
     writing = true;
-    catFile(introFile, introOutput).then(function() {
+    catFile("introduction.txt", introOutput).then(function() {
+      writing = false;
+    });
+  }
+  return;
+});
+document.getElementById("dalton").addEventListener('click', function (e) {
+  if(!writing){
+    writing = true;
+    openPDF("/team/dalton/", "dalton_resume.pdf").then(function() {
+      writing = false;
+    });
+  }
+  return;
+});
+document.getElementById("chris").addEventListener('click', function (e) {
+  if(!writing){
+    writing = true;
+    openPDF("/team/christopher/", "christopher_resume.pdf").then(function() {
+      writing = false;
+    });
+  }
+  return;
+});
+document.getElementById("thomas").addEventListener('click', function (e) {
+  if(!writing){
+    writing = true;
+    openPDF("/team/thomas/", "thomas_cv.pdf").then(function() {
+      writing = false;
+    });
+  }
+  return;
+});
+document.getElementById("project-git").addEventListener('click', function (e) {
+  if(!writing){
+    writing = true;
+    openLink("https://github.com/overmyerD/rootaccess-senior-project").then(function() {
+      writing = false;
+    });
+  }
+  return;
+});
+document.getElementById("website-git").addEventListener('click', function (e) {
+  if(!writing){
+    writing = true;
+    openLink("https://github.com/overmyerD/rootaccess-website").then(function() {
+      writing = false;
+    });
+  }
+  return;
+});
+document.getElementById("project-def").addEventListener('click', function (e) {
+  if(!writing){
+    writing = true;
+    openLink("https://google.com").then(function() {
       writing = false;
     });
   }
   return;
 });
 
-
 function openLink(link) {
   return new Promise(async function(resolve, reject) {
-    await addText("xdf-open", 100);
-    await addText(" http://", 125);
-    await keyFunction(3, "ArrowLeft", 150);
-    await addText("s", 75);
-    await keyFunction(3, "ArrowRight", 100);
-    await addText(link, 45);
+    await addText("xdg-open " + link, 15);
     await wait(100);
     addCMDLine();
     clearCMD();
     document.getElementById("terminal").scrollTop = document.getElementById("terminal").scrollHeight;
-    window.open("https://" + link);
+    window.open(link);
     resolve();
 });
 }
 
-function openPDF(text) {
+function openPDF(directory, file) {
     return new Promise(async function(resolve, reject) {
-      await addText("xdf", 100);
-      await addText("-", 200);
-      await addText("open", 50);
-      await keyFunction(6, "Backspace", 100);
-      await addText("g", 50);
-      await addText("-", 200);
-      await addText("open ", 50);
-      await addText(text, 75);
-      await addText(",pd", 75);
-      await keyFunction(3, "Backspace", 75);
-      await addText(".pdf", 100);
+      await addText("xdg-open ." + directory + file, 15);
       await wait(100);
       addCMDLine();
       clearCMD();
       document.getElementById("terminal").scrollTop = document.getElementById("terminal").scrollHeight;
-      window.open("../root/" + text + ".pdf");
+      window.open("../root" + directory + file);
       resolve();
   });
 }
 
 async function catFile(file, output) {
   return new Promise(async function(resolve, reject) {
-    await addText("cat ", 75);
-    await addText(file.charAt(0), 250);
-    await addText(file.substring(1, file.length), 75);
+    await addText("cat " + file, 20);
     await wait(100);
     addCMDLine();
     clearCMD();
@@ -125,7 +116,7 @@ function addCMDLine() {
   lineDiv.id = "line";
   lineDiv.className = "line";
   var cmdText = document.getElementById("cmd").textContent;
-  lineDiv.innerHTML = "<span class='green'>rootaccess@linux-desktop</span>:<span class='blue'>~</span>$&nbsp;" + cmdText;
+  lineDiv.innerHTML = "<span class='green'>rootaccess@linux-desktop</span>:<span class='blue'>/root</span>$&nbsp;" + cmdText;
   output.appendChild(lineDiv);
 }
 

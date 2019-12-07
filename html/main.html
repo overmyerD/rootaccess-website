@@ -2,25 +2,25 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
-      <link rel="stylesheet" href="../css/main.css">
+    <title>Root Access :)</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
 
     <div class="sidebar">
-      <button type="button" class="main-btn" id="intro" style="cursor: pointer;">Introduction</button>
-      <button type="button" class="main-btn" disabled>Team</button>
-        <button type="button" class="sub-btn">Christopher McNeil</button>
-          <button type="button" class="sub-sub-btn" id="christopher-resume">Resume</button>
-        <button type="button" class="sub-btn">Dalton Overmyer</button>
-          <button type="button" class="sub-sub-btn" id="dalton-resume">Resume</button>
-        <button type="button" class="sub-btn">Thomas Mulugeta Abebe</button>
-          <button type="button" class="sub-sub-btn" id="thomas-resume">CV</button>
-      <button type="button" class="main-btn">Documentation</button>
-        <button type="button" class="sub-btn" style="cursor: pointer;">Project Definition</button>
-        <button type="button" class="sub-btn" style="cursor: pointer;" id="github-project">Project GitHub</button>
-        <button type="button" class="sub-btn" style="cursor: pointer;" id="github-website">Website GitHub</button>
-        <button type="button" class="sub-btn" style="cursor: pointer;">Symposium PowerPoint</button>
+      <button type="button" name="button" class="header-btn" id="intro">Play Introduction</button>
+      <button type="button" name="button" class="header-btn-none">Team</button>
+        <button type="button" name="button" class="inner-btn-none">Dalton Overmyer</button>
+          <button type="button" name="button" class="inner-btn" id="dalton">&#149; Resume</button>
+        <button type="button" name="button" class="inner-btn-none">Christopher McNeil</button>
+          <button type="button" name="button" class="inner-btn" id="chris">&#149; Resume</button>
+        <button type="button" name="button" class="inner-btn-none">Thomas Abebe</button>
+          <button type="button" name="button" class="inner-btn" id="thomas">&#149; CV</button>
+      <button type="button" name="button" class="header-btn-none">Documentation</button>
+        <button type="button" name="button" class="inner-btn" id="project-def">Project Definition</button>
+        <button type="button" name="button" class="inner-btn" id="project-git">Project GitHub</button>
+        <button type="button" name="button" class="inner-btn" id="website-git">Website GitHub</button>
     </div>
 
     <div class="terminal" id="terminal">
@@ -28,7 +28,7 @@
 
       </div>
       <div class="line" id="line">
-        <span id="cmdUser"><span class="green">rootaccess@linux-desktop</span>:<span class="blue">~</span>$&nbsp;</span><span id="cmd"><span class="blink">&nbsp;<wbr class="end" id='&nbsp;'></span></span>
+        <span id="cmdUser"><span class="green">rootaccess@linux-desktop</span>:<span class="blue">/root</span>$&nbsp;</span><span id="cmd"><span class="blink">&nbsp;<wbr class="end" id='&nbsp;'></span></span>
       </div>
 
     </div>
@@ -36,5 +36,15 @@
 
     <script src="../scripts/main.js"></script>
     <script src="../scripts/output.js"></script>
+    <script>
+      function myAccFunc(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") == -1) {
+          x.className += " w3-show";
+        } else {
+          x.className = x.className.replace(" w3-show", "");
+        }
+      }
+      </script>
   </body>
 </html>
