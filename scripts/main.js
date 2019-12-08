@@ -124,7 +124,7 @@ async function catFile(file, output) {
   });
 }
 
-
+/*
 window.onkeydown = function pressed(e) {
   if      (printableKey(e))       addChar(e.key);
   else if (e.key == " ")          addChar('\u00A0');
@@ -133,7 +133,7 @@ window.onkeydown = function pressed(e) {
   else if (e.key == "Backspace")  backspaceCharacter();
   else if (e.key == "Delete")     deleteCharacter();
 }
-
+*/
 function addCMDLine() {
   var output = document.getElementById("output");
   var lineDiv = document.createElement("div");
