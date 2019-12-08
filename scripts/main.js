@@ -57,40 +57,64 @@ document.getElementById("website-git").addEventListener('click', function (e) {
 document.getElementById("project-def").addEventListener('click', function (e) {
   if(!writing){
     writing = true;
-    openLink("https://google.com").then(function() {
+    openPDF("/documentation/", "project-def.pdf").then(function() {
       writing = false;
     });
   }
   return;
 });
 
+window.onload = function() {
+  var blinkOn = true;
+  setInterval(function() {
+    var blink = document.getElementsByClassName('blink')[0];
+    if(!writing){
+      if(blinkOn){
+        blink.style.backgroundColor = '#2C001E';
+        blink.style.color = 'white';
+        blinkOn = false;
+      }else{
+        blink.style.backgroundColor = 'white';
+        blink.style.color = '#2C001E';
+        blinkOn = true;
+      }
+    }
+  }, 500);
+}
+
+function blink() {
+    var blink = document.getElementsByClassName('blink')[0];
+    blink.style.backgroundColor = 'white';
+    blink.style.color = '#2C001E';
+}
+
 function openLink(link) {
   return new Promise(async function(resolve, reject) {
-    await addText("xdg-open " + link, 15);
+    await addText("xdg-open " + link, 10);
     await wait(100);
     addCMDLine();
     clearCMD();
     document.getElementById("terminal").scrollTop = document.getElementById("terminal").scrollHeight;
     window.open(link);
     resolve();
-});
+  });
 }
 
 function openPDF(directory, file) {
     return new Promise(async function(resolve, reject) {
-      await addText("xdg-open ." + directory + file, 15);
+      await addText("xdg-open ." + directory + file, 10);
       await wait(100);
       addCMDLine();
       clearCMD();
       document.getElementById("terminal").scrollTop = document.getElementById("terminal").scrollHeight;
-      window.open("../root" + directory + file);
+      window.open("root" + directory + file);
       resolve();
   });
 }
 
 async function catFile(file, output) {
   return new Promise(async function(resolve, reject) {
-    await addText("cat " + file, 20);
+    await addText("cat " + file, 10);
     await wait(100);
     addCMDLine();
     clearCMD();
@@ -125,17 +149,9 @@ function addLine(text) {
   var lineDiv = document.createElement("div");
   lineDiv.id = "line";
   lineDiv.className = "line";
-  for(var i=0;i<text.length;i++){
-    if(text.charAt(i) == " "){
-      lineDiv.innerHTML += '\u00A0' + "<wbr>";
-    }
-    else if(text.charAt(i) == "\n"){
-      lineDiv.appendChild(document.createElement("br"));
-    }
-    else{
-      lineDiv.innerHTML += text.charAt(i) + "<wbr>";
-    }
-  }
+  var line = text.split(" ").join('\u00A0')
+  line = line.split("\n").join("\n" + "<br>")
+  lineDiv.innerHTML += line;
   output.appendChild(lineDiv);
 }
 
@@ -271,6 +287,7 @@ function addText(input, time) {
   });
 }
 
+
 function keyFunction(num, key, time) {
   return new Promise(function(resolve, reject) {
     setTimeout(function() {
@@ -302,3 +319,33 @@ function wait(time) {
 function clearCMD() {
   document.getElementById("cmd").innerHTML = "<span class='blink'>&nbsp;<wbr class='end' id='&nbsp;'>";
 }
+
+
+
+
+
+
+
+
+
+
+
+
+var introOutput = [
+  "________            _____     _______                               ______",
+  "___  __ \\_____________  /_    ___    |_________________________________  /",
+  "__  /_/ /  __ \\  __ \\  __/    __  /| |  ___/  ___/  _ \\_  ___/_  ___/_  / ",
+  "_  _, _// /_/ / /_/ / /_      _  ___ / /__ / /__ /  __/(__  )_(__  ) /_/  ",
+  "/_/ |_| \\____/\\____/\\__/      /_/  |_\\___/ \\___/ \\___//____/ /____/ (_)\n\n",
+  "- A SIU Computer Science senior project by Dalton Overmyer, Christopher McNeil, and Thomas Abebe.\n",
+  "- Mentor: Dr. Geisler-Lee - Research Professor. Bioinformatics, Cell Biology, Cell Wall Biology, Metabolism at SIU.\n\n",
+
+  "- The purpose of this project is to develop an application that can quickly and efficiently crop images of a root system.",
+  "- The current process is currently done manually by a lab assistant and can take months to complete hundreds of images.",
+  "- Our job is to take this time intensive process and automate it.",
+  "- This will grant more valuable time to conduct research.",
+  "- We plan to unitize MATLAB to complete this task.\n\n",
+
+  "- Checkout the project definition for a more definitive definition of the project! (WIP)",
+  "- Click the Project GitHub button to see the current progress of our project!\n\n\n"
+];
