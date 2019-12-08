@@ -1,4 +1,30 @@
-writing = false;
+var introOutput = [
+  "________            _____     _______                               ______",
+  "___  __ \\_____________  /_    ___    |_________________________________  /",
+  "__  /_/ /  __ \\  __ \\  __/    __  /| |  ___/  ___/  _ \\_  ___/_  ___/_  / ",
+  "_  _, _// /_/ / /_/ / /_      _  ___ / /__ / /__ /  __/(__  )_(__  ) /_/  ",
+  "/_/ |_| \\____/\\____/\\__/      /_/  |_\\___/ \\___/ \\___//____/ /____/ (_)\n\n",
+  "- A SIU Computer Science senior project by Dalton Overmyer, Christopher McNeil, and Thomas Abebe.\n",
+  "- Mentor: Dr. Geisler-Lee - Research Professor. Bioinformatics, Cell Biology, Cell Wall Biology, Metabolism at SIU.\n\n",
+
+  "- The purpose of this project is to develop an application that can quickly and efficiently crop images of a root system.",
+  "- The current process is done manually by a lab assistant and can take months to complete hundreds of images.",
+  "- Our job is to take this time intensive process and automate it.",
+  "- This will grant more valuable time to conduct research.",
+  "- We plan to unitize MATLAB to complete this task.\n\n",
+
+  "- Checkout the project definition for a more definitive definition of the project! (WIP)",
+  "- Click the Project GitHub button to see the current progress of our project!\n\n\n"
+];
+
+var writing = false;
+if(!writing){
+  writing = true;
+  catFile("introduction.txt", introOutput).then(function() {
+    writing = false;
+  });
+}
+
 
 document.getElementById("intro").addEventListener('click', function (e) {
   if(!writing){
@@ -9,6 +35,8 @@ document.getElementById("intro").addEventListener('click', function (e) {
   }
   return;
 });
+
+
 document.getElementById("dalton").addEventListener('click', function (e) {
   if(!writing){
     writing = true;
@@ -319,33 +347,3 @@ function wait(time) {
 function clearCMD() {
   document.getElementById("cmd").innerHTML = "<span class='blink'>&nbsp;<wbr class='end' id='&nbsp;'>";
 }
-
-
-
-
-
-
-
-
-
-
-
-
-var introOutput = [
-  "________            _____     _______                               ______",
-  "___  __ \\_____________  /_    ___    |_________________________________  /",
-  "__  /_/ /  __ \\  __ \\  __/    __  /| |  ___/  ___/  _ \\_  ___/_  ___/_  / ",
-  "_  _, _// /_/ / /_/ / /_      _  ___ / /__ / /__ /  __/(__  )_(__  ) /_/  ",
-  "/_/ |_| \\____/\\____/\\__/      /_/  |_\\___/ \\___/ \\___//____/ /____/ (_)\n\n",
-  "- A SIU Computer Science senior project by Dalton Overmyer, Christopher McNeil, and Thomas Abebe.\n",
-  "- Mentor: Dr. Geisler-Lee - Research Professor. Bioinformatics, Cell Biology, Cell Wall Biology, Metabolism at SIU.\n\n",
-
-  "- The purpose of this project is to develop an application that can quickly and efficiently crop images of a root system.",
-  "- The current process is currently done manually by a lab assistant and can take months to complete hundreds of images.",
-  "- Our job is to take this time intensive process and automate it.",
-  "- This will grant more valuable time to conduct research.",
-  "- We plan to unitize MATLAB to complete this task.\n\n",
-
-  "- Checkout the project definition for a more definitive definition of the project! (WIP)",
-  "- Click the Project GitHub button to see the current progress of our project!\n\n\n"
-];
