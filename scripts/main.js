@@ -108,7 +108,18 @@ window.onload = function() {
       }
     }
   }, 500);
+
+  if(isMobileDevice()) {
+      var sidebar = document.getElementsByClassName('sidebar')[0];
+      sidebar.style.width = '100%';
+  }
+
+//style="z-index: -1"
 }
+function isMobileDevice() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+}
+
 
 function blink() {
     var blink = document.getElementsByClassName('blink')[0];
