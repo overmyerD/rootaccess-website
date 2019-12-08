@@ -13,7 +13,7 @@ body{
     overflow-y: scroll;
     background-color: #2C001E;
     position:absolute;
-    top: 0; bottom: 0; right: 5%;
+    top: 0; bottom: 0; right: 6%;
     margin: auto;
     width: 75vw; height: 75vh;
     border: 1px solid black;
